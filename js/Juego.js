@@ -39,9 +39,36 @@ var contadorIntentos = 6;
 var intentos = 6;
 
 
+/*=============== FUNCIONES CON LAS VALIDACIONES Y LOGICA DEL EJERCICIO =====================*/
+function mostrarIntentos(){
+    document.getElementById("lblIntento").innerHTML = intentos;
+}
+
+function iniciarImagen(){
+    document.images["imagen"].src = "img/ahorcado_6.png";
+}
+
+function habilitarComponentes(){
+    var txtInput = document.getElementById('txtLetra');
+    txtInput.disabled = false;
+    var btnIniciar = document.getElementById('btnIngresar');
+    btnIniciar.disabled=false;
+}
+
+function inhabilitarComponentes(){
+    var txtInput = document.getElementById('txtLetra');
+    txtInput.disabled = true;
+    var btnIniciar = document.getElementById('btnIngresar');
+    btnIniciar.disabled = true;
+}
+
+function resetInput(){
+    document.getElementById("txtLetra").value = "";
+    document.getElementById("txtLetra").focus;
+}
 
 // Escoger palabra al azar
-function generaPalabra() {
+function generarPalabra() {
   rand = (Math.random() * 19).toFixed(0);
   palabra = palabras[rand][0].toUpperCase();
   console.log(palabra);
@@ -116,7 +143,6 @@ function verificarLetra(){
             if(palabra[i]==letra) oculta[i] = letra;
         }
 
-        hueco.innerHTML = oculta.join("");
         Swal.fire({
             position: 'top-center',
             icon: 'success',
@@ -124,6 +150,7 @@ function verificarLetra(){
             showConfirmButton: false,
             timer: 1000
         });   
+        hueco.innerHTML = oculta.join("");
         
     }else{
         
@@ -136,14 +163,14 @@ function verificarLetra(){
             showConfirmButton: false,
             timer: 1000
         });
+        document.images["imagen"].src = "img/ahorcado_"+cont+".png";
 
-        perdio();
+        perdioJuego();
 
        
     }
 
-    document.getElementById("txtLetra").value = "";
-    document.getElementById("txtLetra").focus;
+    resetInput();
 }
 
 function ganoJuego(){
@@ -156,34 +183,26 @@ function ganoJuego(){
             showConfirmButton: false,
             timer: 1000
         });
+        inhabilitarComponentes();
+        iniciarImagen();
     }
 }
-function perdio(){
+
+function perdioJuego(){
+
     if(cont<=0){
             Swal.fire({
                 position: 'top-center',
                 icon: 'warning',
-                title: 'Perdio el juego :(',
+                title: 'Perdió el juego :(..!!',
                 showConfirmButton: false,
                 timer: 1000
             });
 
-            var txtInput = document.getElementById('txtLetra');
-            txtInput.disabled = true;
+            inhabilitarComponentes();
+            //iniciarImagen();
     }
-}
 
-
-
-function mostrarIntentos(){
-    document.getElementById("lblIntento").innerHTML = intentos;
-}
-
-function habilitarCaja(){
-    var txtInput = document.getElementById('txtLetra');
-    txtInput.disabled = false;
-    var btnIniciar = document.getElementById('btnIngresar');
-    btnIniciar.disabled=false;
 }
 
 function iniciarJuego(){
@@ -194,10 +213,12 @@ function iniciarJuego(){
               'warning'
     );
 
-    generaPalabra();
+    generarPalabra();
     pintarGuiones(palabra.length);
+    iniciarImagen();
     mostrarIntentos();
-    habilitarCaja();
+    habilitarComponentes();
+
 }
 
 //###########################################################################################################
