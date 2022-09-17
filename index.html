@@ -37,8 +37,8 @@
                         required>
                 </td>
                 <td colspan="2" align="left" height="80px">
-                    <input type="button" class="btn btn-primary" id="btnIngresar" value="Insertar" onclick="verificarLetra();"
-                        style="font-family: Times New Roman;" disabled>
+                    <input type="button" class="btn btn-primary" id="btnIngresar" value="Insertar"
+                        onclick="verificarLetra();" style="font-family: Times New Roman;" disabled>
                 </td>
             </tr>
 
@@ -56,12 +56,12 @@
                 </td>
                 <td align="center">
                     <label style="font-family: Times New Roman;">Intentos: </label>
-                    <label id="lblIntento" style="font-family: Times New Roman;">------</label>
+                    <label id="lblIntento" style="font-family: Times New Roman;">0</label>
                 </td>
                 <td align="center">
                     <button class="btn btn-success" id="btnIniciar" onclick="iniciarJuego()">Iniciar</button>
                     <br>
-                    <button class="btn btn-primary" onclick="pista()">Pista</button>
+                    <button class="btn btn-primary" id="btnPista" onclick="pista()">Pista</button>
                     <br>
                     <button class="btn btn-warning" id="btnReiniciar" onclick="reiniciarJuego()">Reiniciar</button>
                 </td>
@@ -77,7 +77,7 @@
                 <td align="center" colspan="3">
                     <br>
                     <div id="divResultadoImagen">
-                        <img src="img/ahorcado_6.png" alt="" id="image6" width="100px" height="200px">
+                        <img src="img/ahorcado_6.png" name="imagen" alt="" id="imagen" width="100px" height="200px">
                     </div>
                 </td>
             </tr>
